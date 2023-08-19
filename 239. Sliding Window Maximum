@@ -1,0 +1,52 @@
+class Solution {
+public:
+void solve(vector<int>& nums, int k, int i, int j, int n, vector<int> &ans, priority_queue<pair<int, int>> &pq)
+{
+    if(j>n-1)
+    {
+        return;
+    }
+    pair<int, int> topp=pq.top();
+    ans.push_back(topp.first);
+
+    if(i+1>topp.second)
+    {
+        pq.pop();
+        if(j+1<=n-1)
+        pq.push(make_pair(nums[j+1],j+1));
+        solve(nums, k, i+1, j+1, n, ans, pq);
+    }
+    else
+    {
+        if(j+1<=n-1)
+        pq.push(make_pair(nums[j+1],j+1));
+        solve(nums, k, i+1, j+1, n, ans, pq);
+    }
+}
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        priority_queue<pair<int, int>> pq;
+        int n=nums.size();
+        for(int i=0; i<k; i++)
+        {
+            pq.push({nums[i],i});
+        }
+        vector<int> ans;
+        ans.push_back(pq.top().first);
+        int i=1, j=k;
+        while(j<n)
+        {
+            // int topp=pq.top().first;
+            pq.push({nums[j],j});
+            int index=pq.top().second;
+            if(index<i)
+            {
+                while(pq.top().second<i)
+                pq.pop();
+            }
+            ans.push_back(pq.top().first);
+            i++, j++;
+
+        }
+        return ans;
+    }
+};
