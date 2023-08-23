@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        string temp=s+s;
+        string sub= temp.substr(1, temp.length()-2);
+        if(sub.find(s)!=string :: npos)
+        return 1;
+        return 0;
+    }
+};
