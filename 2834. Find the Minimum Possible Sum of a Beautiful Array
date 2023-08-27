@@ -1,0 +1,13 @@
+class Solution {
+public:
+    long long minimumPossibleSum(int n, int target) {
+        long long  sum=0;
+        if(n<=target/2)
+        return n*(1+n)/2;
+        long long  var=target/2;
+        sum= sum+ (var*(var+1))/2;
+
+        sum+=((n-var)*(2*(target)+(n-var-1))/2);
+        return sum;
+    }
+};
