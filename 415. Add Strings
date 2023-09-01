@@ -1,0 +1,42 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        string ans="";
+        int n1=num1.length();
+        int n2=num2.length();
+        if(n1<n2)
+        {
+            int diff=n2-n1;
+            while(diff--)
+            {
+                num1.insert(num1.begin(),'0');
+            }
+        }
+        else if(n1>n2)
+        {
+            int diff=n1-n2;
+            while(diff--)
+            {
+                num2.insert(num2.begin(),'0');
+            }
+        }
+        //cout<<num1.length()<<" "<<num2.length()<<"  "<<num1<<" "<<num2;
+        int carry=0;
+        int i=num1.length()-1;
+        while(i>=0)
+        {
+            int num=(num1[i]+num2[i]-'0'-'0'+carry)%10;
+            //cout<<carry<<"";
+            carry=(num1[i]+num2[i]-'0'-'0'+carry)/10;
+            ans.insert(ans.begin(),num+'0');
+            i--;
+        }
+        while(carry)
+        {
+            ans.insert(ans.begin(),(carry%10)+'0');
+            carry/=10;
+        }
+        
+        return ans;
+    }
+};
