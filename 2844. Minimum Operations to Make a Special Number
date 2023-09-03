@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int minimumOperations(string num) {
+        int n=num.size();
+        int ans=n;
+        if (find(num.begin(), num.end(), '0') != num.end()) 
+            ans = n - 1;
+
+        for(string s : vector<string>{"00", "50", "25", "75"})
+        {
+            int sat=1;
+            int move=0;
+            for(int i=n-1; i>=0; i--)
+            {
+                if(num[i]==s[sat])
+                {
+                    sat--;
+                    if(sat<0)
+                    break;
+                }
+                else
+                move++;
+                
+            }
+            if(sat<0)
+            {
+                ans=min(ans,move);
+            }
+        }
+        return ans;
+    }
+};
