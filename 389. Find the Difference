@@ -1,0 +1,16 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        int var=0;
+        int n=s.length();
+        for(int i=0; i<n+1; i++)
+        {
+            var+=t[i];
+        }
+        for(int i=0; i<n; i++)
+        {
+            var-=s[i];
+        }
+        return char(var);
+    }
+};
